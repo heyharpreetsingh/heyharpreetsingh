@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-gray-200/20 dark:border-gray-700/20;
+  }
+
+  .glass-hover {
+    @apply hover:bg-white/90 dark:hover:bg-gray-800/90 hover:border-gray-300/30 dark:hover:border-gray-600/30 transition-all duration-300;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-500 to-purple-600 bg-clip-text text-transparent;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 glass glass-hover font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300;
+  }
+
+  .card {
+    @apply glass rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-600;
+}
+
+/* Selection */
+::selection {
+  @apply bg-primary-500/30 text-primary-900 dark:text-primary-100;
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    margin: 0.5in;
+    size: A4 portrait;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: white !important;
+    color: black !important;
+  }
+
+  body {
+    font-size: 11pt;
+  }
+
+  /* Hide header toolbar */
+  header {
+    display: none !important;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Remove all shadows */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Remove rounded corners for cleaner print */
+  * {
+    border-radius: 0 !important;
+  }
+
+  /* Ensure background colors print */
+  .bg-primary-600, .bg-primary-700,
+  [class*="bg-primary"] {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Ensure borders print correctly */
+  .border-b-2, .border-b {
+    border-bottom-color: #000 !important;
+  }
+
+  /* Prevent page breaks inside important elements */
+  section,
+  .border-l-2,
+  .relative.pl-6 {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Allow breaks between sections */
+  section {
+    page-break-after: auto;
+  }
+
+  /* Adjust spacing for print */
+  .p-8 {
+    padding: 1.5rem !important;
+  }
+
+  .space-y-8 > * + * {
+    margin-top: 1.5rem !important;
+  }
+
+  /* Make text more readable */
+  p, li, span {
+    color: #1f2937 !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #111827 !important;
+  }
+
+  /* Ensure links are visible */
+  a {
+    color: #0369a1 !important;
+    text-decoration: none !important;
+  }
+
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    color: #666 !important;
+  }
+
+  /* Simplify borders */
+  .border-b-2, .border-b {
+    border-bottom: 1px solid #d1d5db !important;
+  }
+
+  /* Fix background colors for tags */
+  .bg-gray-100, .bg-primary-50 {
+    background: #f3f4f6 !important;
+    border: 1px solid #d1d5db !important;
+  }
+
+  /* Optimize image printing */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  /* Remove page margins on container */
+  .max-w-5xl {
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Adjust font sizes for print */
+  .text-4xl {
+    font-size: 24pt !important;
+  }
+
+  .text-2xl {
+    font-size: 16pt !important;
+  }
+
+  .text-xl {
+    font-size: 14pt !important;
+  }
+
+  .text-lg {
+    font-size: 12pt !important;
+  }
+
+  .text-sm {
+    font-size: 9pt !important;
+  }
+
+  .text-xs {
+    font-size: 8pt !important;
+  }
+}
